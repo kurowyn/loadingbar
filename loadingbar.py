@@ -1,6 +1,11 @@
 from time import sleep, localtime
-from os import system
+from os import system, name
 from sys import argv
+
+if name == 'posix':
+    terminal_clr_scr = 'clear'
+else:
+    terminal_clr_scr = 'cls'
 
 class LoadingBar:
     def __init__(self, 
@@ -53,7 +58,7 @@ class LoadingBar:
 
         for bar_and_percentage in self.generate_bars(reverse):
             if progress_hidden:
-                system('clear')
+                system(terminal_clr_scr)
              
             if percent_show:
                 print(bar_and_percentage['bar'], bar_and_percentage['percentage'],
